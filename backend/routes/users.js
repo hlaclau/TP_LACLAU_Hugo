@@ -27,6 +27,26 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  const index = users.findIndex((u) => u.id === parseInt(req.params.id));
+
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: 'Utilisateur non trouvé',
+    });
+  }
+
+  const { id, createdAt, ...updates } = req.body;
+
+  users[index] = { ...users[index], ...updates };
+
+  res.status(200).json({
+    success: true,
+    data: users[index],
+  });
+});
+
 router.post('/', (req, res) => {
   const { name, email, role } = req.body;
 
