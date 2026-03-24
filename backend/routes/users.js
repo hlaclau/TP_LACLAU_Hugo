@@ -42,6 +42,16 @@ router.put('/:id', (req, res) => {
 
   const { id, createdAt, ...updates } = req.body;
 
+  if (updates.email) {
+    const emailTaken = users.some((u) => u.email === updates.email && u.id !== users[index].id);
+    if (emailTaken) {
+      return res.status(409).json({
+        success: false,
+        message: 'Cet email est déjà utilisé',
+      });
+    }
+  }
+
   users[index] = { ...users[index], ...updates };
 
   res.status(200).json({
@@ -72,6 +82,14 @@ router.post('/', (req, res) => {
     return res.status(400).json({
       success: false,
       message: 'Les champs name et email sont requis',
+    });
+  }
+
+  const emailTaken = users.some((u) => u.email === email);
+  if (emailTaken) {
+    return res.status(409).json({
+      success: false,
+      message: 'Cet email est déjà utilisé',
     });
   }
 
