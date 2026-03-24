@@ -47,6 +47,21 @@ router.put('/:id', (req, res) => {
   });
 });
 
+router.delete('/:id', (req, res) => {
+  const index = users.findIndex((u) => u.id === parseInt(req.params.id));
+
+  if (index === -1) {
+    return res.status(404).json({
+      success: false,
+      message: 'Utilisateur non trouvé',
+    });
+  }
+
+  users.splice(index, 1);
+
+  res.status(204).send();
+});
+
 router.post('/', (req, res) => {
   const { name, email, role } = req.body;
 
