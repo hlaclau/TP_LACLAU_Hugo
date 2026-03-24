@@ -3,7 +3,7 @@ import { users } from '../data/users.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (_req, res) => {
   res.status(200).json({
     success: true,
     count: users.length,
@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const user = users.find((u) => u.id === parseInt(req.params.id));
+  const user = users.find((u) => u.id === parseInt(req.params.id, 10));
 
   if (!user) {
     return res.status(404).json({
@@ -28,7 +28,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const index = users.findIndex((u) => u.id === parseInt(req.params.id));
+  const index = users.findIndex((u) => u.id === parseInt(req.params.id, 10));
 
   if (index === -1) {
     return res.status(404).json({
@@ -48,7 +48,7 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-  const index = users.findIndex((u) => u.id === parseInt(req.params.id));
+  const index = users.findIndex((u) => u.id === parseInt(req.params.id, 10));
 
   if (index === -1) {
     return res.status(404).json({
