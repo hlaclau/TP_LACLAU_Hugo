@@ -1,0 +1,15 @@
+meta {
+  name: Get Users By Role
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/users?role=admin
+  body: none
+  auth: none
+}
+
+params:query {
+  role: admin
+}

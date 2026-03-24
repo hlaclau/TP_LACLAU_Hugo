@@ -3,11 +3,14 @@ import { users } from '../data/users.js';
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
+router.get('/', (req, res) => {
+  const { role } = req.query;
+  const filtered = role ? users.filter((u) => u.role === role) : users;
+
   res.status(200).json({
     success: true,
-    count: users.length,
-    data: users,
+    count: filtered.length,
+    data: filtered,
   });
 });
 
