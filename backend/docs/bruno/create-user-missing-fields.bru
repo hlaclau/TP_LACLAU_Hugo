@@ -1,0 +1,17 @@
+meta {
+  name: Create User Missing Fields
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "role": "user"
+  }
+}
