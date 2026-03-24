@@ -1,6 +1,10 @@
+import 'dotenv/config';
 import express from 'express';
 import usersRouter from './routes/users.js';
 import logger from './middlewares/logger.js';
+import connectDB from './config/db.js';
+
+await connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
