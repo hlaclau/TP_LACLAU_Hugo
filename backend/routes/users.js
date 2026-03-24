@@ -27,4 +27,30 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const { name, email, role } = req.body;
+
+  if (!name || !email) {
+    return res.status(400).json({
+      success: false,
+      message: 'Les champs name et email sont requis',
+    });
+  }
+
+  const newUser = {
+    id: users[users.length - 1].id + 1,
+    name,
+    email,
+    role: role || 'user',
+    createdAt: new Date().toISOString().split('T')[0],
+  };
+
+  users.push(newUser);
+
+  res.status(201).json({
+    success: true,
+    data: newUser,
+  });
+});
+
 export default router;
