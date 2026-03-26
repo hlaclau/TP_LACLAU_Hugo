@@ -2,39 +2,47 @@ import mongoose from "mongoose";
 import UserModel from "../models/userModel.js";
 
 export const getAllUsers = async (req, res) => {
-	const { role } = req.query;
-	const filter = role ? { role } : {};
-	const data = await UserModel.find(filter);
-	res.status(200).json({ success: true, count: data.length, data });
+	try {
+		const { role } = req.query;
+		const filter = role ? { role } : {};
+		const data = await UserModel.find(filter);
+		res.status(200).json({ success: true, count: data.length, data });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err.message });
+	}
 };
 
 export const getUserById = async (req, res) => {
-	const { id } = req.params;
+	try {
+		const { id } = req.params;
 
-	if (!mongoose.isValidObjectId(id)) {
-		return res.status(400).json({ success: false, message: "ID invalide" });
-	}
+		if (!mongoose.isValidObjectId(id)) {
+			return res.status(400).json({ success: false, message: "ID invalide" });
+		}
 
-	const user = await UserModel.findById(id);
-	if (!user) {
-		return res
-			.status(404)
-			.json({ success: false, message: "Utilisateur non trouvé" });
+		const user = await UserModel.findById(id);
+		if (!user) {
+			return res
+				.status(404)
+				.json({ success: false, message: "Utilisateur non trouvé" });
+		}
+		res.status(200).json({ success: true, data: user });
+	} catch (err) {
+		res.status(500).json({ success: false, message: err.message });
 	}
-	res.status(200).json({ success: true, data: user });
 };
 
 export const createUser = async (req, res) => {
-	const { name, email, role } = req.body;
-
-	if (!name || !email) {
-		return res.status(400).json({
-			success: false,
-			message: "Les champs name et email sont requis",
-		});
-	}
-
 	try {
+		const { name, email, role } = req.body;
+
+		if (!name || !email) {
+			return res.status(400).json({
+				success: false,
+				message: "Les champs name et email sont requis",
+			});
+		}
+
 		const newUser = await UserModel.create({ name, email, role });
 		res.status(201).json({ success: true, data: newUser });
 	} catch (err) {
@@ -43,20 +51,20 @@ export const createUser = async (req, res) => {
 				.status(409)
 				.json({ success: false, message: "Cet email est déjà utilisé" });
 		}
-		throw err;
+		res.status(500).json({ success: false, message: err.message });
 	}
 };
 
 export const updateUser = async (req, res) => {
-	const { id } = req.params;
-
-	if (!mongoose.isValidObjectId(id)) {
-		return res.status(400).json({ success: false, message: "ID invalide" });
-	}
-
-	const { _id, createdAt, ...fields } = req.body;
-
 	try {
+		const { id } = req.params;
+
+		if (!mongoose.isValidObjectId(id)) {
+			return res.status(400).json({ success: false, message: "ID invalide" });
+		}
+
+		const { _id, createdAt, ...fields } = req.body;
+
 		const updated = await UserModel.findByIdAndUpdate(id, fields, {
 			new: true,
 			runValidators: true,
@@ -75,16 +83,27 @@ export const updateUser = async (req, res) => {
 				.status(409)
 				.json({ success: false, message: "Cet email est déjà utilisé" });
 		}
-		throw err;
+		res.status(500).json({ success: false, message: err.message });
 	}
 };
 
-export const deleteUser = (req, res) => {
-	const deleted = UserModel.remove(parseInt(req.params.id, 10));
-	if (!deleted) {
-		return res
-			.status(404)
-			.json({ success: false, message: "Utilisateur non trouvé" });
+export const deleteUser = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		if (!mongoose.isValidObjectId(id)) {
+			return res.status(400).json({ success: false, message: "ID invalide" });
+		}
+
+		const deleted = await UserModel.findByIdAndDelete(id);
+		if (!deleted) {
+			return res
+				.status(404)
+				.json({ success: false, message: "Utilisateur non trouvé" });
+		}
+
+		res.status(204).send();
+	} catch (err) {
+		res.status(500).json({ success: false, message: err.message });
 	}
-	res.status(204).send();
 };
