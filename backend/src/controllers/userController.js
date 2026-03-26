@@ -47,25 +47,36 @@ export const createUser = async (req, res) => {
 	}
 };
 
-export const updateUser = (req, res) => {
-	const id = parseInt(req.params.id, 10);
-	const user = UserModel.getById(id);
+export const updateUser = async (req, res) => {
+	const { id } = req.params;
 
-	if (!user) {
-		return res
-			.status(404)
-			.json({ success: false, message: "Utilisateur non trouvé" });
+	if (!mongoose.isValidObjectId(id)) {
+		return res.status(400).json({ success: false, message: "ID invalide" });
 	}
 
-	const { email } = req.body;
-	if (email && UserModel.isEmailTaken(email, id)) {
-		return res
-			.status(409)
-			.json({ success: false, message: "Cet email est déjà utilisé" });
-	}
+	const { _id, createdAt, ...fields } = req.body;
 
-	const updated = UserModel.update(id, req.body);
-	res.status(200).json({ success: true, data: updated });
+	try {
+		const updated = await UserModel.findByIdAndUpdate(id, fields, {
+			new: true,
+			runValidators: true,
+		});
+
+		if (!updated) {
+			return res
+				.status(404)
+				.json({ success: false, message: "Utilisateur non trouvé" });
+		}
+
+		res.status(200).json({ success: true, data: updated });
+	} catch (err) {
+		if (err.code === 11000) {
+			return res
+				.status(409)
+				.json({ success: false, message: "Cet email est déjà utilisé" });
+		}
+		throw err;
+	}
 };
 
 export const deleteUser = (req, res) => {
