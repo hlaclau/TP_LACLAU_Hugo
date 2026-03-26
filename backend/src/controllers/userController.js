@@ -1,8 +1,9 @@
 import UserModel from "../models/userModel.js";
 
-export const getAllUsers = (req, res) => {
+export const getAllUsers = async (req, res) => {
 	const { role } = req.query;
-	const data = UserModel.getAll(role);
+	const filter = role ? { role } : {};
+	const data = await UserModel.find(filter);
 	res.status(200).json({ success: true, count: data.length, data });
 };
 
