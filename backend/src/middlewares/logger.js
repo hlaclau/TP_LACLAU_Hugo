@@ -1,15 +1,17 @@
 const logger = (req, res, next) => {
-  const start = Date.now();
+	const start = Date.now();
 
-  res.on('finish', () => {
-    const duration = Date.now() - start;
-    const now = new Date();
-    const timestamp = now.toISOString().replace('T', ' ').substring(0, 19);
+	res.on("finish", () => {
+		const duration = Date.now() - start;
+		const now = new Date();
+		const timestamp = now.toISOString().replace("T", " ").substring(0, 19);
 
-    console.log(`[${timestamp}] ${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`);
-  });
+		console.log(
+			`[${timestamp}] ${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`,
+		);
+	});
 
-  next();
+	next();
 };
 
 export default logger;
