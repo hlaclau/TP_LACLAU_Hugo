@@ -24,7 +24,7 @@ export const getUserById = async (req, res) => {
 	res.status(200).json({ success: true, data: user });
 };
 
-export const createUser = (req, res) => {
+export const createUser = async (req, res) => {
 	const { name, email, role } = req.body;
 
 	if (!name || !email) {
@@ -34,14 +34,17 @@ export const createUser = (req, res) => {
 		});
 	}
 
-	if (UserModel.isEmailTaken(email)) {
-		return res
-			.status(409)
-			.json({ success: false, message: "Cet email est déjà utilisé" });
+	try {
+		const newUser = await UserModel.create({ name, email, role });
+		res.status(201).json({ success: true, data: newUser });
+	} catch (err) {
+		if (err.code === 11000) {
+			return res
+				.status(409)
+				.json({ success: false, message: "Cet email est déjà utilisé" });
+		}
+		throw err;
 	}
-
-	const newUser = UserModel.create({ name, email, role });
-	res.status(201).json({ success: true, data: newUser });
 };
 
 export const updateUser = (req, res) => {
