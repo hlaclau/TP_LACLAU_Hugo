@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "seed": "node src/data/seed.js"
+    "seed": "node src/data/seed.js",
+    "lint": "biome lint ./src",
+    "format": "biome format --write ./src",
+    "check": "biome check --write ./src"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +19,8 @@
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "mongoose": "^9.3.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.9"
   }
 }
