@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import UserModel from "../models/userModel.js";
 
 export const getAllUsers = async (req, res) => {
@@ -7,8 +8,14 @@ export const getAllUsers = async (req, res) => {
 	res.status(200).json({ success: true, count: data.length, data });
 };
 
-export const getUserById = (req, res) => {
-	const user = UserModel.getById(parseInt(req.params.id, 10));
+export const getUserById = async (req, res) => {
+	const { id } = req.params;
+
+	if (!mongoose.isValidObjectId(id)) {
+		return res.status(400).json({ success: false, message: "ID invalide" });
+	}
+
+	const user = await UserModel.findById(id);
 	if (!user) {
 		return res
 			.status(404)
