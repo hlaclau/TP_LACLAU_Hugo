@@ -1,0 +1,17 @@
+meta {
+  name: Get Users Paginated By Role
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/users?role=admin&page=1&limit=2
+  body: none
+  auth: none
+}
+
+params:query {
+  role: admin
+  page: 1
+  limit: 2
+}
