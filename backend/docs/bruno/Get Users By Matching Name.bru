@@ -1,0 +1,15 @@
+meta {
+  name: Get Users By Matching Name
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/users?search=
+  body: none
+  auth: none
+}
+
+params:query {
+  search: 
+}
