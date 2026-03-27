@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
+import { UserForm } from "./components/UserForm";
 import { UserList } from "./components/UserList";
 import { userService } from "./services/userService";
 
@@ -17,8 +18,14 @@ function App() {
 			.finally(() => setLoading(false));
 	}, []);
 
+	const handleCreate = (data) => {
+		return userService
+			.create(data)
+			.then((res) => setUsers([...users, res.data.data]));
+	};
+
 	const handleDelete = (id) => {
-		userService
+		return userService
 			.remove(id)
 			.then(() => setUsers(users.filter((u) => u._id !== id)));
 	};
@@ -26,6 +33,9 @@ function App() {
 	return (
 		<>
 			<Navbar count={users.length} />
+			<div className="user-form-wrapper">
+				<UserForm onSubmit={handleCreate} />
+			</div>
 			<UserList
 				users={users}
 				loading={loading}
