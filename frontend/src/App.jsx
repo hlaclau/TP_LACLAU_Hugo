@@ -72,6 +72,7 @@ function App() {
 				error={error}
 				onDelete={handleDelete}
 				onEdit={setSelectedUser}
+				filterRole={filterRole}
 			/>
 		</>
 	);

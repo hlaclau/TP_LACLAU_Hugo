@@ -1,4 +1,16 @@
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .user-card {
+	animation: fadeIn 0.25s ease both;
 	border: 1px solid var(--border);
 	border-radius: 12px;
 	box-shadow: var(--shadow);
