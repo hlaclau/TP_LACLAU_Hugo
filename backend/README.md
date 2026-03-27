@@ -187,3 +187,35 @@ Supprimer l'utilisateur créé (code 204).
 Tenter de récupérer l'utilisateur supprimé (code 404).
 
 ![tp3-test-7](docs/screenshots/tp3/scenario/test-7-created-user-not-found.png)
+
+---
+
+## Tâche 4.2 — Tests des cas d'erreur MongoDB
+
+> Les captures d'écran ci-dessous correspondent aux tests des cas d'erreur du **TP 3** avec MongoDB.
+
+### 1. POST /api/users — Email déjà existant
+Créer un utilisateur avec une adresse email déjà utilisée (code 409 Conflict).
+
+![tp3-error-test-1](docs/screenshots/tp3/errors/test-1-create-user-with-already-used-email.png)
+
+---
+
+### 2. GET /api/users/id_invalide — ObjectId invalide
+Récupérer un utilisateur avec un id invalide (ex: `123`) (code 400 Bad Request).
+
+![tp3-error-test-2](docs/screenshots/tp3/errors/test-2-get-user-with-invalid-id.png)
+
+---
+
+### 3. GET /api/users/000000000000000000000000 — ObjectId valide mais inexistant
+Récupérer un utilisateur avec un ObjectId valide mais inexistant en base (code 404 Not Found).
+
+![tp3-error-test-3](docs/screenshots/tp3/errors/test-3-get-user-with-non-existent-id.png)
+
+---
+
+### 4. DELETE /api/users/id_invalide — ObjectId invalide
+Supprimer un utilisateur avec un id invalide (code 400 Bad Request). Le même comportement s'applique pour `PUT /api/users/id_invalide`.
+
+![tp3-error-test-4](docs/screenshots/tp3/errors/test-4-delete-user-with-invalid-id.png)
