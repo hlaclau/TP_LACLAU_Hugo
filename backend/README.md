@@ -235,3 +235,27 @@ Récupérer un utilisateur avec un ObjectId valide mais inexistant en base (code
 Supprimer un utilisateur avec un id invalide (code 400 Bad Request). Le même comportement s'applique pour `PUT /api/users/id_invalide`.
 
 ![tp3-error-test-4](docs/screenshots/tp3/errors/test-4-delete-user-with-invalid-id.png)
+
+---
+
+## Tâche 4.3 — Vérifier la persistance des données
+
+Ce test valide l'objectif principal du TP : les données survivent au redémarrage du serveur.
+
+### 1. POST /api/users — Créer un utilisateur et noter son `_id`
+
+![persistence-create](docs/screenshots/tp3/persistence/test-persistence-create-user-id-69c660853f1b49f33147b867.png)
+
+---
+
+### 2. Redémarrer le serveur
+Arrêter le serveur (`Ctrl+C`) puis le relancer (`node server.js`).
+
+![persistence-reboot](docs/screenshots/tp3/persistence/test-persistence-reboot-proof.png)
+
+---
+
+### 3. GET /api/users/:_id — Retrouver l'utilisateur après redémarrage
+L'utilisateur créé avant le redémarrage doit toujours être accessible (code 200).
+
+![persistence-get](docs/screenshots/tp3/persistence/test-persistence-get-user-69c660853f1b49f33147b867-after-reboot.png)
