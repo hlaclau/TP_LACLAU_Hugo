@@ -57,6 +57,7 @@ function App() {
 				{["all", "user", "admin"].map((role) => (
 					<button
 						key={role}
+						type="button"
 						className={`filter-btn${filterRole === role ? " active" : ""}`}
 						onClick={() => setFilterRole(role)}
 					>

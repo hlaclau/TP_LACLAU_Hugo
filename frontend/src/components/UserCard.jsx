@@ -29,10 +29,15 @@ export function UserCard({ user, onDelete, onEdit }) {
 			<p className="user-card-date">Créé le {formattedDate}</p>
 			{error && <p className="user-card-error">{error}</p>}
 			<div className="user-card-actions">
-				<button className="user-card-edit" onClick={() => onEdit(user)}>
+				<button
+					type="button"
+					className="user-card-edit"
+					onClick={() => onEdit(user)}
+				>
 					Modifier
 				</button>
 				<button
+					type="button"
 					className="user-card-delete"
 					onClick={() => setShowConfirm(true)}
 				>

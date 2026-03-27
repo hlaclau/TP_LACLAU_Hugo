@@ -9,8 +9,8 @@ export const getAllUsers = async (req, res, next) => {
 		if (search) filter.name = new RegExp(search, "i");
 
 		if (limit !== undefined) {
-			const pageNum = Math.max(1, parseInt(page));
-			const limitNum = Math.max(1, parseInt(limit));
+			const pageNum = Math.max(1, parseInt(page, 10));
+			const limitNum = Math.max(1, parseInt(limit, 10));
 			const skip = (pageNum - 1) * limitNum;
 
 			const [data, totalCount] = await Promise.all([

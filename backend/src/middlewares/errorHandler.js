@@ -1,4 +1,4 @@
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, _req, res, _next) => {
 	if (err.name === "ValidationError") {
 		return res.status(400).json({ success: false, message: err.message });
 	}
