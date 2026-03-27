@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { ConfirmModal } from "./ConfirmModal";
 import "./UserCard.css";
 
 export function UserCard({ user, onDelete, onEdit }) {
 	const [error, setError] = useState(null);
+	const [showConfirm, setShowConfirm] = useState(false);
 
 	const formattedDate = new Date(user.createdAt).toLocaleDateString("fr-FR", {
 		day: "numeric",
@@ -10,7 +12,8 @@ export function UserCard({ user, onDelete, onEdit }) {
 		year: "numeric",
 	});
 
-	const handleDelete = () => {
+	const handleConfirmDelete = () => {
+		setShowConfirm(false);
 		onDelete(user._id).catch((err) =>
 			setError(err.response?.data?.message ?? "Erreur lors de la suppression."),
 		);
@@ -29,10 +32,21 @@ export function UserCard({ user, onDelete, onEdit }) {
 				<button className="user-card-edit" onClick={() => onEdit(user)}>
 					Modifier
 				</button>
-				<button className="user-card-delete" onClick={handleDelete}>
+				<button
+					className="user-card-delete"
+					onClick={() => setShowConfirm(true)}
+				>
 					Supprimer
 				</button>
 			</div>
+			{showConfirm && (
+				<ConfirmModal
+					title="Supprimer l'utilisateur"
+					message={`Voulez-vous vraiment supprimer ${user.name} ?`}
+					onConfirm={handleConfirmDelete}
+					onCancel={() => setShowConfirm(false)}
+				/>
+			)}
 		</div>
 	);
 }
