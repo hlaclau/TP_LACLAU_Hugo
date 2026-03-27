@@ -38,7 +38,8 @@ La documentation est organisée par séance dans les dossiers [`backend/docs/`](
 
 | Page | Description |
 |------|-------------|
-| [Vue d'ensemble](frontend/docs/tp4.md) | Objectifs, stack, composants, lancement |
+| [Vue d'ensemble](frontend/docs/tp4.md) | Objectifs, stack, fonctionnalités, lancement |
+| [Scénarios de test](frontend/docs/tp4-scenario.md) | Parcours de test manuel de l'interface (7 tests) |
 
 ---
 
@@ -48,4 +49,4 @@ La collection Bruno est incluse dans le dépôt. Voir [Tests API avec Bruno](bac
 
 ---
 
-> [Sommaire Backend](backend/README.md)
+> [Sommaire Backend](backend/README.md) | [Sommaire Frontend](frontend/README.md)
