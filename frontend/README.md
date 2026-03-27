@@ -1,23 +1,25 @@
-# Frontend — TP 4
+# TP 4 — Frontend React
 
-> Application React · Vite · axios
+> Cours : **Développement Web Fullstack** — M1, Ynov
 
-[← Sommaire](../README.md) | [Documentation TP 4](docs/tp4.md)
+[← Retour au projet](../README.md)
 
 ---
 
-## Lancer le frontend
+## Sommaire
 
-Depuis la racine du dépôt (recommandé) :
+### TP 4 — Application React
 
-```bash
-npm run dev
-```
+> Frontend Fundamentals · React · Composants · Props · State · axios · API REST
 
-Ou uniquement le frontend :
+- [Vue d'ensemble TP 4](docs/tp4.md) — Objectifs, stack, fonctionnalités, lancement
+- [Scénarios de test TP 4](docs/tp4-scenario.md) — Parcours de test manuel en 7 étapes
 
-```bash
-npm run dev --workspace=frontend
-```
+---
 
-Disponible sur `http://localhost:5173`.
+### Navigation rapide
+
+| | TP 4 |
+|-|------|
+| Vue d'ensemble | [→](docs/tp4.md) |
+| Scénarios | [→](docs/tp4-scenario.md) |
