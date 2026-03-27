@@ -10,6 +10,9 @@ function App() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [selectedUser, setSelectedUser] = useState(null);
+	const [filterRole, setFilterRole] = useState("all");
+
+	const filteredUsers = filterRole === "all" ? users : users.filter((u) => u.role === filterRole);
 
 	useEffect(() => {
 		userService
@@ -41,7 +44,7 @@ function App() {
 
 	return (
 		<>
-			<Navbar count={users.length} />
+			<Navbar count={filteredUsers.length} />
 			<div className="user-form-wrapper">
 				<UserForm
 					onSubmit={handleSubmit}
@@ -49,8 +52,19 @@ function App() {
 					onCancel={() => setSelectedUser(null)}
 				/>
 			</div>
+			<div className="filter-bar">
+				{["all", "user", "admin"].map((role) => (
+					<button
+						key={role}
+						className={`filter-btn${filterRole === role ? " active" : ""}`}
+						onClick={() => setFilterRole(role)}
+					>
+						{role === "all" ? "Tous" : role.charAt(0).toUpperCase() + role.slice(1)}
+					</button>
+				))}
+			</div>
 			<UserList
-				users={users}
+				users={filteredUsers}
 				loading={loading}
 				error={error}
 				onDelete={handleDelete}

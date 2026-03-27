@@ -4,6 +4,35 @@
 	justify-content: center;
 }
 
+.filter-bar {
+	display: flex;
+	gap: 0.5rem;
+	padding: 1.5rem 2rem 0;
+}
+
+.filter-btn {
+	padding: 0.35rem 1rem;
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	background-color: transparent;
+	color: var(--text);
+	cursor: pointer;
+	font-size: 0.9rem;
+	transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.filter-btn:hover {
+	border-color: var(--accent-border);
+	color: var(--accent);
+}
+
+.filter-btn.active {
+	background-color: var(--accent-bg);
+	border-color: var(--accent-border);
+	color: var(--accent);
+	font-weight: 600;
+}
+
 .user-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
