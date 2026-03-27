@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
+import { UserCard } from "./components/UserCard";
 import { userService } from "./services/userService";
 
 function App() {
@@ -10,12 +11,20 @@ function App() {
 		userService.getAll().then((res) => setUsers(res.data.data));
 	}, []);
 
-	console.log(users);
+	const handleDelete = (id) => {
+		userService
+			.remove(id)
+			.then(() => setUsers(users.filter((u) => u._id !== id)));
+	};
 
 	return (
 		<>
 			<Navbar count={users.length} />
-			<h1> TP </h1>
+			<div className="user-grid">
+				{users.map((user) => (
+					<UserCard key={user._id} user={user} onDelete={handleDelete} />
+				))}
+			</div>
 		</>
 	);
 }
