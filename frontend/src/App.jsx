@@ -12,7 +12,8 @@ function App() {
 	const [selectedUser, setSelectedUser] = useState(null);
 	const [filterRole, setFilterRole] = useState("all");
 
-	const filteredUsers = filterRole === "all" ? users : users.filter((u) => u.role === filterRole);
+	const filteredUsers =
+		filterRole === "all" ? users : users.filter((u) => u.role === filterRole);
 
 	useEffect(() => {
 		userService
@@ -59,7 +60,9 @@ function App() {
 						className={`filter-btn${filterRole === role ? " active" : ""}`}
 						onClick={() => setFilterRole(role)}
 					>
-						{role === "all" ? "Tous" : role.charAt(0).toUpperCase() + role.slice(1)}
+						{role === "all"
+							? "Tous"
+							: role.charAt(0).toUpperCase() + role.slice(1)}
 					</button>
 				))}
 			</div>

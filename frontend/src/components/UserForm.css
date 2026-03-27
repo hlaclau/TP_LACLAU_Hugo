@@ -38,6 +38,11 @@
 	font-size: 0.85rem;
 }
 
+.user-form-success {
+	color: #16a34a;
+	font-size: 0.85rem;
+}
+
 .user-form-actions {
 	display: flex;
 	gap: 0.5rem;
