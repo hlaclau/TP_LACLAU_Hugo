@@ -112,28 +112,28 @@ Tenter de récupérer l'utilisateur supprimé (code 404).
 ### 1. POST /api/users sans name ni email — Bad Request
 Créer un utilisateur sans fournir les champs obligatoires (code 400).
 
-![error-test-1](docs/screenshots/tp2/erreurs/test-1-create-user-without-name-and-mail.png)
+![error-test-1](docs/screenshots/tp2/errors/test-1-create-user-without-name-and-mail.png)
 
 ---
 
 ### 2. GET /api/users/9999 — Utilisateur inexistant
 Récupérer un utilisateur avec un id inexistant (code 404).
 
-![error-test-2](docs/screenshots/tp2/erreurs/test-2-get-non-existent-user.png)
+![error-test-2](docs/screenshots/tp2/errors/test-2-get-non-existent-user.png)
 
 ---
 
 ### 3. PUT /api/users/9999 — Modification d'un utilisateur inexistant
 Modifier un utilisateur avec un id inexistant (code 404).
 
-![error-test-3](docs/screenshots/tp2/erreurs/test-3-update-non-existent-user.png)
+![error-test-3](docs/screenshots/tp2/errors/test-3-update-non-existent-user.png)
 
 ---
 
 ### 4. DELETE /api/users/9999 — Suppression d'un utilisateur inexistant
 Supprimer un utilisateur avec un id inexistant (code 404).
 
-![error-test-4](docs/screenshots/tp2/erreurs/test-4-delete-non-existent-token.png)
+![error-test-4](docs/screenshots/tp2/errors/test-4-delete-non-existent-token.png)
 
 ---
 
