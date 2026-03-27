@@ -9,6 +9,7 @@ function App() {
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const [selectedUser, setSelectedUser] = useState(null);
 
 	useEffect(() => {
 		userService
@@ -18,7 +19,15 @@ function App() {
 			.finally(() => setLoading(false));
 	}, []);
 
-	const handleCreate = (data) => {
+	const handleSubmit = (data) => {
+		if (selectedUser) {
+			return userService.update(selectedUser._id, data).then((res) => {
+				setUsers(
+					users.map((u) => (u._id === selectedUser._id ? res.data.data : u)),
+				);
+				setSelectedUser(null);
+			});
+		}
 		return userService
 			.create(data)
 			.then((res) => setUsers([...users, res.data.data]));
@@ -34,13 +43,18 @@ function App() {
 		<>
 			<Navbar count={users.length} />
 			<div className="user-form-wrapper">
-				<UserForm onSubmit={handleCreate} />
+				<UserForm
+					onSubmit={handleSubmit}
+					selectedUser={selectedUser}
+					onCancel={() => setSelectedUser(null)}
+				/>
 			</div>
 			<UserList
 				users={users}
 				loading={loading}
 				error={error}
 				onDelete={handleDelete}
+				onEdit={setSelectedUser}
 			/>
 		</>
 	);

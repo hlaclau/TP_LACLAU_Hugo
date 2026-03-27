@@ -69,9 +69,30 @@
 	margin: 0;
 }
 
-.user-card-delete {
-	align-self: flex-start;
+.user-card-actions {
+	display: flex;
+	gap: 0.5rem;
 	margin-top: 0.75rem;
+}
+
+.user-card-edit {
+	background-color: transparent;
+	color: var(--accent);
+	border: 1px solid var(--accent-border);
+	padding: 0.35rem 0.75rem;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 0.85rem;
+	transition:
+		background-color 0.15s,
+		color 0.15s;
+}
+
+.user-card-edit:hover {
+	background-color: var(--accent-bg);
+}
+
+.user-card-delete {
 	background-color: transparent;
 	color: #ef4444;
 	border: 1px solid #ef4444;
