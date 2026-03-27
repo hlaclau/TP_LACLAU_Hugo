@@ -54,81 +54,83 @@ Le serveur écoute sur `http://localhost:3001`.
 
 ---
 
-## Scénarios de test
+## Scénarios de test TP 2
+
+> Les captures d'écran ci-dessous correspondent aux scénarios de test du **TP 2**.
 
 ### 1. GET /api/users — Récupérer tous les utilisateurs
 Vérifier que les 3 utilisateurs initiaux sont retournés (code 200).
 
-![test-1](docs/screenshots/scenario/test-1-get-all-users.png)
+![test-1](docs/screenshots/tp2/scenario/test-1-get-all-users.png)
 
 ---
 
 ### 2. POST /api/users — Créer un nouvel utilisateur
 Créer un nouvel utilisateur et noter l'id retourné (code 201).
 
-![test-2](docs/screenshots/scenario/test-2-create-new-user.png)
+![test-2](docs/screenshots/tp2/scenario/test-2-create-new-user.png)
 
 ---
 
 ### 3. GET /api/users/:id — Récupérer l'utilisateur créé
 Récupérer l'utilisateur créé avec son id (code 200).
 
-![test-3](docs/screenshots/scenario/test-3-get-created-user-by-id.png)
+![test-3](docs/screenshots/tp2/scenario/test-3-get-created-user-by-id.png)
 
 ---
 
 ### 4. PUT /api/users/:id — Modifier le rôle de l'utilisateur
 Modifier le rôle de l'utilisateur créé (code 200).
 
-![test-4](docs/screenshots/scenario/test-4-update-created-user-role.png)
+![test-4](docs/screenshots/tp2/scenario/test-4-update-created-user-role.png)
 
 ---
 
 ### 5. GET /api/users — Vérifier la liste mise à jour
 Vérifier que la liste contient maintenant 4 utilisateurs (code 200).
 
-![test-5](docs/screenshots/scenario/test-5-get-all-users-with-new-user.png)
+![test-5](docs/screenshots/tp2/scenario/test-5-get-all-users-with-new-user.png)
 
 ---
 
 ### 6. DELETE /api/users/:id — Supprimer l'utilisateur créé
 Supprimer l'utilisateur créé (code 204).
 
-![test-6](docs/screenshots/scenario/test-6-delete-the-created-user.png)
+![test-6](docs/screenshots/tp2/scenario/test-6-delete-the-created-user.png)
 
 ---
 
 ### 7. GET /api/users/:id — Utilisateur introuvable
 Tenter de récupérer l'utilisateur supprimé (code 404).
 
-![test-7](docs/screenshots/scenario/test-7-created-user-not-found.png)
+![test-7](docs/screenshots/tp2/scenario/test-7-created-user-not-found.png)
 
 ---
 
-## Tâche 3.2 — Tests des cas d'erreur
+## Tâche 3.2 — Tests des cas d'erreur TP 2
 
 ### 1. POST /api/users sans name ni email — Bad Request
 Créer un utilisateur sans fournir les champs obligatoires (code 400).
 
-![error-test-1](docs/screenshots/erreurs/test-1-create-user-without-name-and-mail.png)
+![error-test-1](docs/screenshots/tp2/erreurs/test-1-create-user-without-name-and-mail.png)
 
 ---
 
 ### 2. GET /api/users/9999 — Utilisateur inexistant
 Récupérer un utilisateur avec un id inexistant (code 404).
 
-![error-test-2](docs/screenshots/erreurs/test-2-get-non-existent-user.png)
+![error-test-2](docs/screenshots/tp2/erreurs/test-2-get-non-existent-user.png)
 
 ---
 
 ### 3. PUT /api/users/9999 — Modification d'un utilisateur inexistant
 Modifier un utilisateur avec un id inexistant (code 404).
 
-![error-test-3](docs/screenshots/erreurs/test-3-update-non-existent-user.png)
+![error-test-3](docs/screenshots/tp2/erreurs/test-3-update-non-existent-user.png)
 
 ---
 
 ### 4. DELETE /api/users/9999 — Suppression d'un utilisateur inexistant
 Supprimer un utilisateur avec un id inexistant (code 404).
 
-![error-test-4](docs/screenshots/erreurs/test-4-delete-non-existent-token.png)
+![error-test-4](docs/screenshots/tp2/erreurs/test-4-delete-non-existent-token.png)
