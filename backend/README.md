@@ -1,11 +1,16 @@
-# TP 2 - Backend API
+# TP 2 & TP 3 — Backend API
 
 > Cours : **Développement Web Fullstack** — M1, Ynov
-> Séance n°2 · Backend Fundamentals · HTTP · REST · CRUD · Express · Postman
 
-API REST construite avec **Node.js** et **Express** (😢), permettant la gestion d'utilisateurs en mémoire.
+---
 
-## Objectifs du TP
+## TP 2 — Séance n°2
+
+> Backend Fundamentals · HTTP · REST · CRUD · Express · Postman
+
+API REST construite avec **Node.js** et **Express**, permettant la gestion d'utilisateurs en mémoire.
+
+### Objectifs
 
 - Comprendre les méthodes HTTP (GET, POST, PUT, DELETE) et les codes de statut
 - Maîtriser les principes REST et CRUD
@@ -13,7 +18,7 @@ API REST construite avec **Node.js** et **Express** (😢), permettant la gestio
 - Tester les endpoints avec Postman ou Insomnia
 - Gérer les erreurs et retourner des réponses HTTP appropriées
 
-## Fonctionnalités
+### Fonctionnalités
 
 - Lister tous les utilisateurs
 - Récupérer un utilisateur par son identifiant
@@ -22,7 +27,7 @@ API REST construite avec **Node.js** et **Express** (😢), permettant la gestio
 - Supprimer un utilisateur
 - Logging automatique de chaque requête entrante (méthode, URL, durée)
 
-## Routes disponibles
+### Routes disponibles
 
 | Méthode | Route | Description | Codes retour |
 |---------|-------|-------------|--------------|
@@ -32,7 +37,7 @@ API REST construite avec **Node.js** et **Express** (😢), permettant la gestio
 | `PUT` | `/api/users/:id` | Met à jour un utilisateur existant | 200, 404, 409 |
 | `DELETE` | `/api/users/:id` | Supprime un utilisateur | 204, 404 |
 
-### Détail des codes de statut
+#### Détail des codes de statut
 
 | Code | Signification | Cas d'usage |
 |------|--------------|-------------|
@@ -43,7 +48,7 @@ API REST construite avec **Node.js** et **Express** (😢), permettant la gestio
 | 404 | Not Found | Aucun utilisateur trouvé pour cet id |
 | 409 | Conflict | L'adresse email est déjà utilisée |
 
-## Lancer le serveur
+### Lancer le serveur
 
 ```bash
 npm install
@@ -54,9 +59,24 @@ Le serveur écoute sur `http://localhost:3001`.
 
 ---
 
-## Scénarios de test TP 2
+## TP 3 — Séance n°3
 
-> Les captures d'écran ci-dessous correspondent aux scénarios de test du **TP 2**.
+> Base de données & ORM · Mongoose · MongoDB · API REST persistante · MVC
+>
+> Prérequis : TP Séance 2 terminé (API CRUD MVC en mémoire)
+
+### Objectifs
+
+- Comprendre la différence entre données en mémoire (volatile) et données persistées
+- Installer et configurer MongoDB (local ou Atlas cloud)
+- Connecter l'API Express du TP Séance 2 à MongoDB via Mongoose
+- Remplacer le tableau JavaScript en mémoire par de vrais documents MongoDB
+- Adapter l'architecture MVC pour l'asynchronisme (`async/await`, `try/catch`)
+- Gérer les nouveaux cas d'erreur liés à MongoDB (ObjectId invalide, duplication)
+
+---
+
+## Scénarios de test — TP 2
 
 ### 1. GET /api/users — Récupérer tous les utilisateurs
 Vérifier que les 3 utilisateurs initiaux sont retournés (code 200).
@@ -137,9 +157,7 @@ Supprimer un utilisateur avec un id inexistant (code 404).
 
 ---
 
-## Scénarios de test TP 3
-
-> Les captures d'écran ci-dessous correspondent aux scénarios de test du **TP 3** (migration vers MongoDB).
+## Scénarios de test — TP 3
 
 ### 1. GET /api/users — Récupérer tous les utilisateurs
 Vérifier que la liste des utilisateurs est retournée depuis MongoDB (code 200).
@@ -191,8 +209,6 @@ Tenter de récupérer l'utilisateur supprimé (code 404).
 ---
 
 ## Tâche 4.2 — Tests des cas d'erreur MongoDB
-
-> Les captures d'écran ci-dessous correspondent aux tests des cas d'erreur du **TP 3** avec MongoDB.
 
 ### 1. POST /api/users — Email déjà existant
 Créer un utilisateur avec une adresse email déjà utilisée (code 409 Conflict).
