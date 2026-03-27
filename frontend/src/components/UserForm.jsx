@@ -6,6 +6,7 @@ const EMPTY = { name: "", email: "", role: "user" };
 export function UserForm({ onSubmit, selectedUser, onCancel }) {
 	const [form, setForm] = useState(EMPTY);
 	const [error, setError] = useState(null);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const isEditing = selectedUser !== null;
 
@@ -33,13 +34,13 @@ export function UserForm({ onSubmit, selectedUser, onCancel }) {
 			return;
 		}
 		setError(null);
+		setIsSubmitting(true);
 		onSubmit(form)
 			.then(() => setForm(EMPTY))
 			.catch((err) =>
-				setError(
-					err.response?.data?.message ?? "Erreur lors de la soumission.",
-				),
-			);
+				setError(err.response?.data?.message ?? "Erreur lors de la soumission."),
+			)
+			.finally(() => setIsSubmitting(false));
 	};
 
 	return (
@@ -65,8 +66,8 @@ export function UserForm({ onSubmit, selectedUser, onCancel }) {
 				<option value="admin">admin</option>
 			</select>
 			<div className="user-form-actions">
-				<button type="submit" className="user-form-submit">
-					{isEditing ? "Mettre à jour" : "Créer"}
+				<button type="submit" className="user-form-submit" disabled={isSubmitting}>
+					{isSubmitting ? "..." : isEditing ? "Mettre à jour" : "Créer"}
 				</button>
 				{isEditing && (
 					<button type="button" className="user-form-cancel" onClick={onCancel}>

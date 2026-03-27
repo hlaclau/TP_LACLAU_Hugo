@@ -59,6 +59,11 @@
 	opacity: 0.85;
 }
 
+.user-form-submit:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
 .user-form-cancel {
 	padding: 0.45rem 1rem;
 	background-color: transparent;
