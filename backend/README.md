@@ -25,6 +25,10 @@
 - [Tests d'erreur TP 3](docs/tp3-errors.md) — Tâche 4.2 : erreurs MongoDB (ObjectId invalide, email dupliqué)
 - [Test de persistance TP 3](docs/tp3-persistence.md) — Tâche 4.3 : validation de la survie des données au redémarrage
 
+### Tests API — Bruno
+
+- [Tests API avec Bruno](docs/bruno.md) — Collection Bruno incluse dans le dépôt, avec environnement `local` préconfiguré
+
 ---
 
 ### Navigation rapide
@@ -35,3 +39,4 @@
 | Scénarios | [→](docs/tp2-scenario.md) | [→](docs/tp3-scenario.md) |
 | Erreurs | [→](docs/tp2-errors.md) | [→](docs/tp3-errors.md) |
 | Persistance | — | [→](docs/tp3-persistence.md) |
+| Tests API (Bruno) | [→](docs/bruno.md) | [→](docs/bruno.md) |

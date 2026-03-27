@@ -35,4 +35,10 @@ La documentation complète est organisée par séance dans le dossier [`backend/
 
 ---
 
+## Tests API
+
+La collection Bruno est incluse dans le dépôt. Voir [Tests API avec Bruno](backend/docs/bruno.md) pour l'installation et l'utilisation.
+
+---
+
 > [Sommaire Backend](backend/README.md)

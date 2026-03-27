@@ -31,4 +31,24 @@
 
 ---
 
+## Lancer MongoDB avec Docker
+
+Un conteneur MongoDB est disponible via le fichier `docker-compose.yml` à la racine du projet, à des fins de développement.
+
+```bash
+docker compose up -d
+```
+
+| Paramètre | Valeur |
+|-----------|--------|
+| Image | `mongo:8` |
+| Port | `27017` |
+| Utilisateur | `root` |
+| Mot de passe | `root` |
+| Base de données | `tp3` |
+
+Les données sont persistées dans un volume Docker (`mongodb_data`) et survivent aux redémarrages du conteneur.
+
+---
+
 [← Sommaire](../README.md) | [← Tests d'erreur TP 2](tp2-errors.md) | [Suivant : Scénarios de test TP 3 →](tp3-scenario.md)
