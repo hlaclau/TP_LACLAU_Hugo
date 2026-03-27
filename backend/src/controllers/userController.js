@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import UserModel from "../models/userModel.js";
 
-export const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res, next) => {
 	try {
 		const { role, search, page = 1, limit } = req.query;
 		const filter = {};
@@ -31,11 +31,11 @@ export const getAllUsers = async (req, res) => {
 		const data = await UserModel.find(filter);
 		res.status(200).json({ success: true, count: data.length, data });
 	} catch (err) {
-		res.status(500).json({ success: false, message: err.message });
+		next(err);
 	}
 };
 
-export const getUserById = async (req, res) => {
+export const getUserById = async (req, res, next) => {
 	try {
 		const { id } = req.params;
 
@@ -51,11 +51,11 @@ export const getUserById = async (req, res) => {
 		}
 		res.status(200).json({ success: true, data: user });
 	} catch (err) {
-		res.status(500).json({ success: false, message: err.message });
+		next(err);
 	}
 };
 
-export const createUser = async (req, res) => {
+export const createUser = async (req, res, next) => {
 	try {
 		const { name, email, role } = req.body;
 
@@ -69,16 +69,11 @@ export const createUser = async (req, res) => {
 		const newUser = await UserModel.create({ name, email, role });
 		res.status(201).json({ success: true, data: newUser });
 	} catch (err) {
-		if (err.code === 11000) {
-			return res
-				.status(409)
-				.json({ success: false, message: "Cet email est déjà utilisé" });
-		}
-		res.status(500).json({ success: false, message: err.message });
+		next(err);
 	}
 };
 
-export const updateUser = async (req, res) => {
+export const updateUser = async (req, res, next) => {
 	try {
 		const { id } = req.params;
 
@@ -101,16 +96,11 @@ export const updateUser = async (req, res) => {
 
 		res.status(200).json({ success: true, data: updated });
 	} catch (err) {
-		if (err.code === 11000) {
-			return res
-				.status(409)
-				.json({ success: false, message: "Cet email est déjà utilisé" });
-		}
-		res.status(500).json({ success: false, message: err.message });
+		next(err);
 	}
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res, next) => {
 	try {
 		const { id } = req.params;
 
@@ -127,6 +117,6 @@ export const deleteUser = async (req, res) => {
 
 		res.status(204).send();
 	} catch (err) {
-		res.status(500).json({ success: false, message: err.message });
+		next(err);
 	}
 };
