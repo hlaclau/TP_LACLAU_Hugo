@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Navbar } from "./components/Navbar";
-import { UserCard } from "./components/UserCard";
+import { UserList } from "./components/UserList";
 import { userService } from "./services/userService";
 
 function App() {
 	const [users, setUsers] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		userService.getAll().then((res) => setUsers(res.data.data));
+		userService
+			.getAll()
+			.then((res) => setUsers(res.data.data))
+			.catch(() => setError("Erreur lors du chargement des utilisateurs."))
+			.finally(() => setLoading(false));
 	}, []);
 
 	const handleDelete = (id) => {
@@ -20,11 +26,12 @@ function App() {
 	return (
 		<>
 			<Navbar count={users.length} />
-			<div className="user-grid">
-				{users.map((user) => (
-					<UserCard key={user._id} user={user} onDelete={handleDelete} />
-				))}
-			</div>
+			<UserList
+				users={users}
+				loading={loading}
+				error={error}
+				onDelete={handleDelete}
+			/>
 		</>
 	);
 }
