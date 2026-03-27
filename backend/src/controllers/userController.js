@@ -3,8 +3,29 @@ import UserModel from "../models/userModel.js";
 
 export const getAllUsers = async (req, res) => {
 	try {
-		const { role } = req.query;
+		const { role, page = 1, limit } = req.query;
 		const filter = role ? { role } : {};
+
+		if (limit !== undefined) {
+			const pageNum = Math.max(1, parseInt(page));
+			const limitNum = Math.max(1, parseInt(limit));
+			const skip = (pageNum - 1) * limitNum;
+
+			const [data, totalCount] = await Promise.all([
+				UserModel.find(filter).skip(skip).limit(limitNum),
+				UserModel.countDocuments(filter),
+			]);
+
+			return res.status(200).json({
+				success: true,
+				page: pageNum,
+				limit: limitNum,
+				totalCount,
+				totalPages: Math.ceil(totalCount / limitNum),
+				data,
+			});
+		}
+
 		const data = await UserModel.find(filter);
 		res.status(200).json({ success: true, count: data.length, data });
 	} catch (err) {
