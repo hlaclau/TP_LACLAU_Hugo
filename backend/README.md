@@ -134,3 +134,56 @@ Modifier un utilisateur avec un id inexistant (code 404).
 Supprimer un utilisateur avec un id inexistant (code 404).
 
 ![error-test-4](docs/screenshots/tp2/erreurs/test-4-delete-non-existent-token.png)
+
+---
+
+## Scénarios de test TP 3
+
+> Les captures d'écran ci-dessous correspondent aux scénarios de test du **TP 3** (migration vers MongoDB).
+
+### 1. GET /api/users — Récupérer tous les utilisateurs
+Vérifier que la liste des utilisateurs est retournée depuis MongoDB (code 200).
+
+![tp3-test-1](docs/screenshots/tp3/scenario/test-1-get-all-users.png)
+
+---
+
+### 2. POST /api/users — Créer un nouvel utilisateur
+Créer un nouvel utilisateur et noter l'id retourné (code 201).
+
+![tp3-test-2](docs/screenshots/tp3/scenario/test-2-create-new-user.png)
+
+---
+
+### 3. GET /api/users/:id — Récupérer l'utilisateur créé
+Récupérer l'utilisateur créé avec son id (code 200).
+
+![tp3-test-3](docs/screenshots/tp3/scenario/test-3-get-created-user-by-id.png)
+
+---
+
+### 4. PUT /api/users/:id — Modifier le rôle de l'utilisateur
+Modifier le rôle de l'utilisateur créé (code 200).
+
+![tp3-test-4](docs/screenshots/tp3/scenario/test-4-update-created-user-role.png)
+
+---
+
+### 5. GET /api/users — Vérifier la liste mise à jour
+Vérifier que la liste contient le nouvel utilisateur (code 200).
+
+![tp3-test-5](docs/screenshots/tp3/scenario/test-5-get-all-users-with-new-user.png)
+
+---
+
+### 6. DELETE /api/users/:id — Supprimer l'utilisateur créé
+Supprimer l'utilisateur créé (code 204).
+
+![tp3-test-6](docs/screenshots/tp3/scenario/test-6-delete-the-created-user.png)
+
+---
+
+### 7. GET /api/users/:id — Utilisateur introuvable
+Tenter de récupérer l'utilisateur supprimé (code 404).
+
+![tp3-test-7](docs/screenshots/tp3/scenario/test-7-created-user-not-found.png)
