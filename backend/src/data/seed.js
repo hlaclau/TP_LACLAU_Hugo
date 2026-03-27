@@ -18,7 +18,7 @@ const seedUsers = [
 	},
 	{
 		name: "Simon Dugoat",
-		email: "joueurdechecquibatdesenfants@gmail.com",
+		email: "joueurdechec@gmail.com",
 		role: "user",
 		createdAt: new Date("2025-03-24"),
 	},
