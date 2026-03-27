@@ -38,6 +38,11 @@
 	font-size: 0.85rem;
 }
 
+.user-form-actions {
+	display: flex;
+	gap: 0.5rem;
+}
+
 .user-form-submit {
 	align-self: flex-start;
 	padding: 0.45rem 1rem;
@@ -52,4 +57,19 @@
 
 .user-form-submit:hover {
 	opacity: 0.85;
+}
+
+.user-form-cancel {
+	padding: 0.45rem 1rem;
+	background-color: transparent;
+	color: var(--text);
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 0.95rem;
+	transition: border-color 0.15s;
+}
+
+.user-form-cancel:hover {
+	border-color: var(--accent-border);
 }

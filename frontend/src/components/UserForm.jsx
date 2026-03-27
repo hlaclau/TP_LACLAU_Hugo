@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./UserForm.css";
 
 const EMPTY = { name: "", email: "", role: "user" };
 
-export function UserForm({ onSubmit }) {
+export function UserForm({ onSubmit, selectedUser, onCancel }) {
 	const [form, setForm] = useState(EMPTY);
 	const [error, setError] = useState(null);
+
+	const isEditing = selectedUser !== null;
+
+	useEffect(() => {
+		if (selectedUser) {
+			setForm({
+				name: selectedUser.name,
+				email: selectedUser.email,
+				role: selectedUser.role,
+			});
+		} else {
+			setForm(EMPTY);
+		}
+		setError(null);
+	}, [selectedUser]);
 
 	const handleChange = (e) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,13 +36,15 @@ export function UserForm({ onSubmit }) {
 		onSubmit(form)
 			.then(() => setForm(EMPTY))
 			.catch((err) =>
-				setError(err.response?.data?.message ?? "Erreur lors de la création."),
+				setError(
+					err.response?.data?.message ?? "Erreur lors de la soumission.",
+				),
 			);
 	};
 
 	return (
 		<form className="user-form" onSubmit={handleSubmit}>
-			<h2>Nouvel utilisateur</h2>
+			<h2>{isEditing ? "Modifier l'utilisateur" : "Nouvel utilisateur"}</h2>
 			{error && <p className="user-form-error">{error}</p>}
 			<input
 				name="name"
@@ -47,9 +64,16 @@ export function UserForm({ onSubmit }) {
 				<option value="user">user</option>
 				<option value="admin">admin</option>
 			</select>
-			<button type="submit" className="user-form-submit">
-				Créer
-			</button>
+			<div className="user-form-actions">
+				<button type="submit" className="user-form-submit">
+					{isEditing ? "Mettre à jour" : "Créer"}
+				</button>
+				{isEditing && (
+					<button type="button" className="user-form-cancel" onClick={onCancel}>
+						Annuler
+					</button>
+				)}
+			</div>
 		</form>
 	);
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./UserCard.css";
 
-export function UserCard({ user, onDelete }) {
+export function UserCard({ user, onDelete, onEdit }) {
 	const [error, setError] = useState(null);
 
 	const formattedDate = new Date(user.createdAt).toLocaleDateString("fr-FR", {
@@ -25,9 +25,14 @@ export function UserCard({ user, onDelete }) {
 			<p className="user-card-email">{user.email}</p>
 			<p className="user-card-date">Créé le {formattedDate}</p>
 			{error && <p className="user-card-error">{error}</p>}
-			<button className="user-card-delete" onClick={handleDelete}>
-				Supprimer
-			</button>
+			<div className="user-card-actions">
+				<button className="user-card-edit" onClick={() => onEdit(user)}>
+					Modifier
+				</button>
+				<button className="user-card-delete" onClick={handleDelete}>
+					Supprimer
+				</button>
+			</div>
 		</div>
 	);
 }
