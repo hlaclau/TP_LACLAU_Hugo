@@ -52,9 +52,16 @@
 
 ## Lancer le serveur
 
+Depuis la racine du dépôt (recommandé) :
+
 ```bash
-npm install
-npm start
+npm run dev
+```
+
+Ou uniquement le backend :
+
+```bash
+npm run start --workspace=backend
 ```
 
 Le serveur écoute sur `http://localhost:3001`.

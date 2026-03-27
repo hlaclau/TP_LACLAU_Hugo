@@ -56,7 +56,7 @@ Sélectionner l'environnement **local** dans le menu déroulant en haut à droit
 
 ## Lancer les requêtes
 
-S'assurer que le serveur est démarré (`npm start` dans `backend/`) puis que l'environnement **local** est sélectionné, et cliquer sur **Send** pour chaque requête.
+S'assurer que le serveur est démarré (`npm run dev` depuis la racine, ou `npm run start --workspace=backend`) puis que l'environnement **local** est sélectionné, et cliquer sur **Send** pour chaque requête.
 
 ---
 

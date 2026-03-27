@@ -1,7 +1,5 @@
 # TP 3 — Test de persistance
 
-> Tâche 4.3
-
 [← Sommaire](../README.md) | [← Tests d'erreur TP 3](tp3-errors.md)
 
 ---

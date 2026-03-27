@@ -19,6 +19,19 @@
 
 ---
 
+## Fonctionnalités
+
+Les mêmes fonctionnalités que le TP 2, avec persistance des données dans MongoDB :
+
+- Lister tous les utilisateurs (avec pagination et filtres optionnels)
+- Récupérer un utilisateur par son `_id` MongoDB
+- Créer un nouvel utilisateur
+- Modifier un utilisateur existant
+- Supprimer un utilisateur
+- Logging automatique de chaque requête entrante (méthode, URL, durée)
+
+---
+
 ## Ce qui change par rapport au TP 2
 
 | Aspect | TP 2 (mémoire) | TP 3 (MongoDB) |

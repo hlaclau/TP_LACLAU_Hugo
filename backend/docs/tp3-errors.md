@@ -1,7 +1,5 @@
 # TP 3 — Tests des cas d'erreur MongoDB
 
-> Tâche 4.2
-
 [← Sommaire](../README.md) | [← Scénarios TP 3](tp3-scenario.md) | [Suivant : Test de persistance →](tp3-persistence.md)
 
 ---
