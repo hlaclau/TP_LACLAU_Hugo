@@ -1,4 +1,4 @@
-# TP 2 & TP 3 — Développement Web Fullstack
+# TP 2, TP 3 & TP 4 — Développement Web Fullstack
 
 > Cours : **Développement Web Fullstack** — M1, Ynov
 
@@ -9,12 +9,13 @@
 | Dossier | Description |
 |---------|-------------|
 | [`backend/`](backend/) | API REST Node.js / Express / MongoDB |
+| [`frontend/`](frontend/) | Application React / Vite |
 
 ---
 
 ## Documentation
 
-La documentation complète est organisée par séance dans le dossier [`backend/docs/`](backend/docs/).
+La documentation est organisée par séance dans les dossiers [`backend/docs/`](backend/docs/) et [`frontend/docs/`](frontend/docs/).
 
 ### TP 2 — API REST en mémoire
 
@@ -32,6 +33,12 @@ La documentation complète est organisée par séance dans le dossier [`backend/
 | [Scénarios de test](backend/docs/tp3-scenario.md) | Parcours CRUD complet avec MongoDB (7 tests) |
 | [Tests d'erreur](backend/docs/tp3-errors.md) | Erreurs MongoDB : ObjectId invalide, email dupliqué |
 | [Test de persistance](backend/docs/tp3-persistence.md) | Validation de la survie des données au redémarrage |
+
+### TP 4 — Frontend React
+
+| Page | Description |
+|------|-------------|
+| [Vue d'ensemble](frontend/docs/tp4.md) | Objectifs, stack, composants, lancement |
 
 ---
 
