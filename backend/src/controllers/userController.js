@@ -3,8 +3,10 @@ import UserModel from "../models/userModel.js";
 
 export const getAllUsers = async (req, res) => {
 	try {
-		const { role, page = 1, limit } = req.query;
-		const filter = role ? { role } : {};
+		const { role, search, page = 1, limit } = req.query;
+		const filter = {};
+		if (role) filter.role = role;
+		if (search) filter.name = new RegExp(search, "i");
 
 		if (limit !== undefined) {
 			const pageNum = Math.max(1, parseInt(page));
