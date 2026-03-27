@@ -1,0 +1,84 @@
+.user-card {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	box-shadow: var(--shadow);
+	padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	background-color: var(--code-bg);
+	transition: box-shadow 0.2s;
+}
+
+.user-card:hover {
+	box-shadow: var(--shadow);
+	border-color: var(--accent-border);
+}
+
+.user-card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.25rem;
+}
+
+.user-card-name {
+	font-weight: 700;
+	font-size: 1.05rem;
+	margin: 0;
+	color: var(--text-h);
+}
+
+.user-card-email {
+	color: var(--text);
+	font-size: 0.9rem;
+	margin: 0;
+}
+
+.user-card-role {
+	display: inline-block;
+	padding: 0.2rem 0.6rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.user-card-role.admin {
+	background-color: var(--accent-bg);
+	color: var(--accent);
+	border: 1px solid var(--accent-border);
+}
+
+.user-card-role.user {
+	background-color: var(--social-bg);
+	color: var(--text-h);
+	border: 1px solid var(--border);
+}
+
+.user-card-date {
+	font-size: 0.78rem;
+	color: var(--text);
+	margin: 0;
+	margin-top: 0.25rem;
+	opacity: 0.7;
+}
+
+.user-card-delete {
+	align-self: flex-start;
+	margin-top: 0.75rem;
+	background-color: transparent;
+	color: #ef4444;
+	border: 1px solid #ef4444;
+	padding: 0.35rem 0.75rem;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 0.85rem;
+	transition:
+		background-color 0.15s,
+		color 0.15s;
+}
+
+.user-card-delete:hover {
+	background-color: #ef4444;
+	color: #fff;
+}
